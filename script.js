@@ -3,31 +3,31 @@ const perday = document.querySelector('.perday');
 const input = document.querySelector('.input');
 function doSomething(tracker){
   console.log(tracker);
-  trackers.textContent = `${tracker.price ? 'Stock Price: '+'$' + tracker.price : ''}`;
-  let digits;
-  if(tracker.total_vol.includes('K')) digits = 1_000;
-  else if (tracker.total_vol.includes('M')) digits = 1_000_000;
-  else if (tracker.total_vol.includes('B')) digits = 1_000_000_000;
-  perday.textContent = `${tracker.price ? 'Traded Today: '+ '$' + ((Number.parseFloat(tracker.total_vol)*digits) * tracker.price).toLocaleString() : ''}`;
+  trackers.textContent = `${tracker.data.currentPrice ? 'Stock Price: '+'$' + tracker.data.currentPrice : ''}`;
+  perday.textContent = `${tracker.data.currentPrice ? 'Market Cap: '+ '$' + tracker.data.marketCap.toLocaleString() : ''}`;
  }
+
+const stockFunc = () => {
+  setTimeout(()=> {
+    const encodedParams = new URLSearchParams();
+encodedParams.append("symbol", input.value.toLowerCase());
+
 const options = {
-	method: 'GET',
+	method: 'POST',
 	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
 		'X-RapidAPI-Key': '9d4b38764bmsh10e50229dd1e447p136041jsnd90c2aebb38c',
-		'X-RapidAPI-Host': 'realstonks.p.rapidapi.com'
-	}
+		'X-RapidAPI-Host': 'yahoo-finance97.p.rapidapi.com'
+	},
+	body: encodedParams
 };
-const stockFunc = function() {
-  setTimeout(() => {
-  if(!input.value) return;
-  const stonk =  fetch(`https://realstonks.p.rapidapi.com/${input.value.toUpperCase()}`, options)
+
+fetch('https://yahoo-finance97.p.rapidapi.com/stock-info', options)
 	.then(response => response.json())
 	.then(response => doSomething(response))
-	.catch(err => console.error(err)); 
-  }, 1000);
- 
+	.catch(err => console.error(err));
+  }, 1000)
+  
 }
+
 input.addEventListener('input', stockFunc);
-
-
-
