@@ -2,8 +2,8 @@ const stockTrack = document.querySelector('.tracker');
 const cap = document.querySelector('.perday');
 const input = document.querySelector('.input');
 const tracker = function (stock){
-  stockTrack.textContent = `${stock.data.currentPrice ? 'Stock Price: '+'$' + stock.data.currentPrice : ''}`;
-  cap.textContent = `${stock.data.currentPrice ? 'Market Cap: '+ '$' + stock.data.marketCap.toLocaleString() : ''}`;
+  stockTrack.textContent = `${stock.data.currentPrice ? `Stock Price: $${stock.data.currentPrice}` : ''}`;
+  cap.textContent = `${stock.data.currentPrice ? `Market Cap: $${stock.data.marketCap.toLocaleString()}` : ''}`;
  }
 const stockFunc = () => {
   setTimeout(()=> {
