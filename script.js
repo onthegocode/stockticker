@@ -1,17 +1,14 @@
-const trackers = document.querySelector('.tracker');
-const perday = document.querySelector('.perday');
+const stockTrack = document.querySelector('.tracker');
+const cap = document.querySelector('.perday');
 const input = document.querySelector('.input');
-function doSomething(tracker){
-  console.log(tracker);
-  trackers.textContent = `${tracker.data.currentPrice ? 'Stock Price: '+'$' + tracker.data.currentPrice : ''}`;
-  perday.textContent = `${tracker.data.currentPrice ? 'Market Cap: '+ '$' + tracker.data.marketCap.toLocaleString() : ''}`;
+const tracker = function (stock){
+  stockTrack.textContent = `${stock.data.currentPrice ? 'Stock Price: '+'$' + stock.data.currentPrice : ''}`;
+  cap.textContent = `${stock.data.currentPrice ? 'Market Cap: '+ '$' + stock.data.marketCap.toLocaleString() : ''}`;
  }
-
 const stockFunc = () => {
   setTimeout(()=> {
     const encodedParams = new URLSearchParams();
 encodedParams.append("symbol", input.value.toLowerCase());
-
 const options = {
 	method: 'POST',
 	headers: {
@@ -21,13 +18,10 @@ const options = {
 	},
 	body: encodedParams
 };
-
 fetch('https://yahoo-finance97.p.rapidapi.com/stock-info', options)
 	.then(response => response.json())
-	.then(response => doSomething(response))
+	.then(response => tracker(response))
 	.catch(err => console.error(err));
   }, 1000)
-  
 }
-
 input.addEventListener('input', stockFunc);
