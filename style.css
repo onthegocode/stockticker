@@ -4,10 +4,17 @@ body {
   color: white;
   display: grid;
   place-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 h1 {
   font-size: 3rem;
   color: gold;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .tracker {
   font-size: 1.4rem;
