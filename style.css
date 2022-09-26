@@ -12,9 +12,7 @@ h1 {
   color: gold;
 }
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 .tracker {
   font-size: 1.4rem;
