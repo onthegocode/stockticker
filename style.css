@@ -1,0 +1,19 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  color: white;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-size: 3rem;
+  color: gold;
+}
+.tracker {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 3rem 0 1rem;
+}
