@@ -1,2 +1,2 @@
 # stockticker
-https://onthegocode.github.io/stockticker/
+link: https://onthegocode.github.io/stockticker/
